@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF=8">
+	<title> HTML Access to camera </title>
+	<meta name = "viewport" content = "width = device-width">
+	
+	<style>
+		p>img{max-width:90%;}
+	</style>
+</head>
+
+<body>
+	<header>
+	<h1>Capture Image</h1>
+	</header>
+	
+	<main>
+		<form action = "#" id= "myform">
+		
+		<input 	type= "file"
+				id = "capture"
+				accept = "image/*"
+				capture
+		/>
+		
+		<br/>
+		<input type = "submit" value = "Process"/>
+		</form>
+		<p><img src = "" id="img" alt="from phone"></p>
+	</main>
+	
+	<script>
+	document.addEventListener('DOMContentLoaded',(ev)=> 
+	{
+		let form = document.getElementById('myform');
+		let input = document.getElementById('capture');
+		
+		input.addEventListener('change', (ev)=>
+		{
+			console.dir(input.files[0]);
+			if(input.files[0].type.indexOf("image/*")> -1)
+			{
+				let img = document.getElementById('img');
+				img.src = window.URL.createObjectURL(input.files[0]);
+			}
+		})
+	})
+	</script>
+</body>
+</html>
